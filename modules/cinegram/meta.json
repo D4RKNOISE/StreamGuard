@@ -1,0 +1,8 @@
+{
+  "name": "Cinegram",
+  "slug": "cinegram",
+  "features": [
+    "adguard",
+    "fillbrowserscreen"
+  ]
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>StreamGuard</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div>
+        <h1>StreamGuard</h1>
+        <div class="sub">Multi-site streaming domain manager</div>
+      </div>
+      <button id="refreshBtn" class="icon-btn" title="Refresh">↻</button>
+    </div>
+
+    <section id="updatePanel" class="panel update-panel hidden">
+      <div class="panel-headline">
+        <div class="panel-title">Update Available</div>
+        <div id="updateSummary" class="tiny-muted"></div>
+      </div>
+      <div id="updateLead" class="muted">New supported sites are available in the remote database, but this StreamGuard version does not include their local modules yet.</div>
+      <div id="updateList"></div>
+      <div class="actions github-actions compact-top-gap">
+        <a id="openGithubUpdateBtn" class="primary-btn link-btn" href="https://github.com/D4RKNOISE/StreamGuard" target="_blank" rel="noreferrer">Open GitHub to Update</a>
+      </div>
+    </section>
+
+    <section class="panel current-panel">
+      <div class="panel-title">Current Site</div>
+      <div id="currentStatus" class="status-line">Loading…</div>
+      <div id="currentDetails" class="muted"></div>
+      <div id="currentActions" class="actions hidden">
+        <button id="injectModulesBtn" class="primary-btn">Run Site Modules</button>
+      </div>
+    </section>
+
+    <section class="panel quick-actions-panel">
+      <div class="panel-headline">
+        <div class="panel-title">Quick Actions</div>
+        <div class="tiny-muted">Suggest first, support later</div>
+      </div>
+      <div class="quick-actions-grid">
+        <button id="suggestCurrentSiteBtn" class="primary-btn stretch-btn">Suggest current site</button>
+        <button id="toggleSuggestPanelBtn" class="secondary-btn stretch-btn">Suggest new site...</button>
+      </div>
+      <div class="quick-note">Suggestions are submitted to the remote review sheet and then kept locally in the popup as a visible record. They do not get support modules automatically.</div>
+    </section>
+
+    <section class="panel monitoring-panel">
+      <div class="panel-headline">
+        <div class="panel-title">Live Monitoring</div>
+        <div id="monitorStatusBadge" class="tiny-status">Idle</div>
+      </div>
+      <div id="monitorStatusText" class="muted">Open the Developer Capture overlay on the page to start live monitoring.</div>
+      <div id="monitorEvents" class="monitor-events"></div>
+    </section>
+
+    <section class="panel controls-panel">
+      <div class="search-block">
+        <div class="search-label">Search</div>
+        <input id="searchInput" type="text" placeholder="Search groups, domains, notes, or statuses…" />
+      </div>
+      <label class="inline-toggle">
+        <input id="favoritesOnly" type="checkbox" />
+        <span>Favorites only</span>
+      </label>
+    </section>
+
+    <section class="panel suggest-panel hidden" id="suggestPanel">
+      <div class="panel-title">Suggest new site...</div>
+      <div class="suggest-lead">Submit a new domain for review. StreamGuard will post it to the remote sheet and keep a local record in the popup.</div>
+      <div class="field-grid">
+        <input id="localGroupInput" type="text" placeholder="Group name (recommended, not required)" />
+        <input id="localDomainInput" type="text" placeholder="Domain (e.g. mirror.example)" />
+      </div>
+      <textarea id="localNoteInput" placeholder="Why this domain matters, mirror notes, player hints, popup traps, or player selectors"></textarea>
+      <div class="actions">
+        <button id="addLocalDomainBtn" class="primary-btn">Submit suggestion</button>
+      </div>
+      <div id="localMessage" class="feedback-message hidden"></div>
+    </section>
+
+    <section class="panel supported-panel">
+      <div class="panel-headline">
+        <div class="panel-title">Supported Groups</div>
+        <div id="groupsSummary" class="tiny-muted"></div>
+      </div>
+      <div id="groups"></div>
+    </section>
+
+    <section class="panel review-panel">
+      <div class="panel-headline">
+        <div class="panel-title">Review Queue</div>
+        <div id="reviewSummary" class="tiny-muted"></div>
+      </div>
+      <div id="reviewLead" class="muted">Suggested, reviewing, and rejected remote domains stay here until they are fully supported.</div>
+      <div id="reviewGroups"></div>
+    </section>
+
+    <section class="panel github-panel">
+      <div class="panel-headline">
+        <div class="panel-title">GitHub Support</div>
+        <div class="tiny-muted">For GitHub issues or notes</div>
+      </div>
+      <div class="muted">Use this prompt when you want to post StreamGuard support details on GitHub.</div>
+      <div class="actions github-actions">
+        <button id="copyCurrentPromptBtn" class="secondary-btn">Copy Support Prompt for GitHub</button>
+        <a id="openGithubBtn" class="secondary-btn link-btn" href="https://github.com/D4RKNOISE/StreamGuard" target="_blank" rel="noreferrer">Open GitHub</a>
+      </div>
+    </section>
+
+    <section class="panel suggestions-panel">
+      <div class="panel-headline">
+        <div class="panel-title">Your Suggestions</div>
+        <div id="suggestionsSummary" class="tiny-muted"></div>
+      </div>
+      <div id="suggestionsLead" class="muted">Submitted suggestions stay visible here while waiting for developer analysis.</div>
+      <div id="suggestionsList"></div>
+    </section>
+  </div>
+
+  <script src="../remote_config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
